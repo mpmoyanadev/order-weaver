@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+import contextlib
 from collections.abc import Awaitable, Callable
 
 from aiokafka import AIOKafkaConsumer, AIOKafkaProducer
@@ -104,10 +105,8 @@ class KafkaConsumerWorker:
     async def stop(self) -> None:
         if self._task is not None:
             self._task.cancel()
-            try:
+            with contextlib.suppress(asyncio.CancelledError):
                 await self._task
-            except asyncio.CancelledError:
-                pass
             self._task = None
         if self._consumer is not None:
             await self._consumer.stop()
@@ -115,7 +114,7 @@ class KafkaConsumerWorker:
 
     async def _loop(self) -> None:
         assert self._consumer is not None
-        try:
+        with contextlib.suppress(asyncio.CancelledError):
             async for msg in self._consumer:
                 try:
                     await self._handler(bytes(msg.value))
@@ -123,8 +122,6 @@ class KafkaConsumerWorker:
                     # Здесь можно добавить ретраи/дедлеттер
                     # Пока просто логгируем через print, чтобы не тянуть логгер сюда
                     print(f"[kafka] handler error for topic {self._topic}", flush=True)
-        except asyncio.CancelledError:
-            pass
 
 
 async def example_usage() -> None:
