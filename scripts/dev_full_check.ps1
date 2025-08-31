@@ -9,6 +9,13 @@ function Section($name) {
   Write-Host "`n==== $name ====\n" -ForegroundColor Cyan
 }
 
+function Ensure-Success([string]$step) {
+  if ($LASTEXITCODE -ne 0) {
+    Write-Host "ERROR: $step failed with code $LASTEXITCODE" -ForegroundColor Red
+    exit $LASTEXITCODE
+  }
+}
+
 # Ensure we are at the repo root regardless of where the script is called from
 Set-Location (Resolve-Path (Join-Path $PSScriptRoot '..'))
 
@@ -31,6 +38,7 @@ Section "Install dev requirements"
 
 Section "Generate protobufs"
 & (Join-Path $PSScriptRoot 'gen_protos.ps1')
+Ensure-Success "Generate protobufs"
 
 Section "Static checks (ruff, black, mypy)"
 # Ruff: try check, auto-fix if needed, then re-check
@@ -40,6 +48,7 @@ if ($LASTEXITCODE -ne 0) {
   & $py -m ruff check --fix .
   & $py -m ruff check .
 }
+Ensure-Success "Ruff check"
 
 # Black: check, format if needed, then re-check
 & $py -m black --check .
@@ -48,13 +57,16 @@ if ($LASTEXITCODE -ne 0) {
   & $py -m black .
   & $py -m black --check .
 }
+Ensure-Success "Black check"
 
 & $py -m mypy .
+Ensure-Success "Mypy"
 
 Section "Unit tests (OTEL/Kafka disabled)"
 $env:OTEL_DISABLED = "1"
 $env:KAFKA_DISABLED = "1"
 & $py -m pytest -q
+Ensure-Success "Pytest"
 
 if (-not $SkipE2E) {
   Section "Docker Compose E2E"

@@ -10,3 +10,6 @@ pre-commit==3.8.0
 bandit==1.7.9
 pip-audit==2.7.3
 grpcio-tools==1.62.1
+
+# For Starlette TestClient used by tests/test_health.py
+httpx==0.27.2
