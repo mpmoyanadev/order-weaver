@@ -9,7 +9,7 @@
 from __future__ import annotations
 
 from datetime import UTC, datetime
-from typing import Any
+from typing import Any, cast
 from uuid import uuid4
 
 # ВАЖНО: импортируем pb2 только внутри функций, чтобы не падать, если прото ещё не сгенерен
@@ -36,6 +36,7 @@ def pack_envelope(
     - source — имя сервиса-источника.
     """
     from common.proto.common import event_envelope_pb2 as env_pb2  # локальный импорт
+    env_pb2 = cast(Any, env_pb2)  # для mypy: tr-typed pb2 считаем Any
 
     env = env_pb2.EventEnvelope(
         id=str(uuid4()),
@@ -47,7 +48,7 @@ def pack_envelope(
         timestamp=_now_iso(),
         payload=payload,
     )
-    return env.SerializeToString()
+    return cast(bytes, env.SerializeToString())
 
 
 def unpack_envelope(data: bytes) -> tuple[Any, bytes]:
@@ -56,6 +57,7 @@ def unpack_envelope(data: bytes) -> tuple[Any, bytes]:
     Возвращаем сам envelope (protobuf-объект) и исходный payload (bytes).
     """
     from common.proto.common import event_envelope_pb2 as env_pb2  # локальный импорт
+    env_pb2 = cast(Any, env_pb2)  # для mypy
 
     env = env_pb2.EventEnvelope()
     env.ParseFromString(data)
