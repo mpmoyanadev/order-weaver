@@ -26,6 +26,30 @@ check_untyped_defs = true
 no_implicit_optional = true
 exclude = "(^|/)(common/proto/|\\.venv/|tests/)"
 
+[[tool.mypy.overrides]]
+module = [
+  "aiokafka",
+  "aiokafka.*",
+  "google.protobuf",
+  "google.protobuf.*",
+]
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = [
+  "common.proto.*",
+]
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = [
+  "services.orders.app.main",
+  "services.payments.app.main",
+  "services.inventory.app.main",
+  "services.orchestrator.app.main",
+]
+disable_error_code = ["attr-defined"]
+
 [tool.pytest.ini_options]
 addopts = "-q"
 pythonpath = ["."]
