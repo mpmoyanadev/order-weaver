@@ -90,6 +90,7 @@ async def create_order(data: CreateOrderIn) -> dict[str, str]:
     """
     # Сформируем protobuf‑сообщение доменного события
     from common.proto.orders import orders_pb2  # ленивый импорт
+
     evt = orders_pb2.OrderCreated(order_id=data.order_id, user_id=data.user_id, amount=data.amount)
     payload = evt.SerializeToString()
 

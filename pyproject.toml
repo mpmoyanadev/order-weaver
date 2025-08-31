@@ -1,14 +1,21 @@
 [tool.black]
 line-length = 100
 target-version = ["py311"]
-exclude = ["^common/proto/"]
+extend-exclude = "(^|/)common/proto/"
 
 [tool.ruff]
 line-length = 100
 target-version = "py311"
+exclude = ["common/proto/"]
+ 
+[tool.ruff.lint]
 select = ["E","F","I","UP","B","SIM","ASYNC","Q"]
 ignore = ["E203","E266","E501"]
-exclude = ["common/proto/"]
+
+[tool.ruff.lint.flake8-quotes]
+inline-quotes = "double"
+multiline-quotes = "double"
+docstring-quotes = "double"
 
 [tool.mypy]
 python_version = "3.11"
@@ -17,7 +24,7 @@ warn_unused_configs = true
 disallow_untyped_defs = true
 check_untyped_defs = true
 no_implicit_optional = true
-exclude = ["common/proto/", ".venv/"]
+exclude = "(^|/)(common/proto/|\\.venv/|tests/)"
 
 [tool.pytest.ini_options]
 addopts = "-q"

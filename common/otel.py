@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Any
+
 from opentelemetry import trace
 from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
 from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
@@ -25,7 +27,7 @@ def setup_otel(service_name: str, endpoint: str | None = None) -> None:
     trace.set_tracer_provider(provider)
 
 
-def instrument_fastapi(app) -> None:
+def instrument_fastapi(app: Any) -> None:
     settings = get_settings()
     if settings.otel_disabled:
         return

@@ -23,7 +23,9 @@ class KafkaProducer:
                 return
             except Exception as exc:  # брокер может быть ещё не готов
                 last_exc = exc
-                print(f"[kafka] producer start attempt {attempt}/{retries} failed: {exc}", flush=True)
+                print(
+                    f"[kafka] producer start attempt {attempt}/{retries} failed: {exc}", flush=True
+                )
                 if attempt == retries:
                     break
                 await asyncio.sleep(delay)
@@ -90,7 +92,9 @@ class KafkaConsumerWorker:
                 return
             except Exception as exc:
                 last_exc = exc
-                print(f"[kafka] consumer start attempt {attempt}/{retries} failed: {exc}", flush=True)
+                print(
+                    f"[kafka] consumer start attempt {attempt}/{retries} failed: {exc}", flush=True
+                )
                 if attempt == retries:
                     break
                 await asyncio.sleep(delay)

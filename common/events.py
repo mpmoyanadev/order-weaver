@@ -5,9 +5,11 @@
 сериализуют свои сообщения в bytes и передают сюда. Это упрощает импорт
 в средах, где прото-код ещё не сгенерирован (например, при запуске unit-тестов).
 """
+
 from __future__ import annotations
 
 from datetime import UTC, datetime
+from typing import Any
 from uuid import uuid4
 
 # ВАЖНО: импортируем pb2 только внутри функций, чтобы не падать, если прото ещё не сгенерен
@@ -48,7 +50,7 @@ def pack_envelope(
     return env.SerializeToString()
 
 
-def unpack_envelope(data: bytes) -> tuple[object, bytes]:
+def unpack_envelope(data: bytes) -> tuple[Any, bytes]:
     """
     Распаковать bytes в `EventEnvelope` и вернуть кортеж (envelope, payload_bytes).
     Возвращаем сам envelope (protobuf-объект) и исходный payload (bytes).
