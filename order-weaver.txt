@@ -1,0 +1,17 @@
+Заказ/оплата/склад как сага (event‑driven e‑commerce ядро)
+Что это: несколько микросервисов (orders, payments, inventory) с согласованностью через события.
+Фичи: саги/оркестратор или хореография, outbox/inbox паттерн, транзакционные сообщения, дедлеттеры, идемпотентность, replays.
+Стек: FastAPI/gRPC, Postgres, Kafka/Redpanda, Protobuf, SQLAlchemy, Alembic, OpenTelemetry.
+Что показывает: распределённые транзакции, события, микросервисы, схемы контрактов, трейсинг end‑to‑end.
+
+OrderWeaver — ядро e-commerce на сагах (orders/payments/inventory)
+GitHub: order-weaver
+
+Документация: понятный README (описание, архитектура, как запустить локально/в докере, env пример, ADR‑заметки, roadmap, скриншоты/диаграмма).
+API: OpenAPI/Swagger, описанные схемы ошибок, Postman/Insomnia коллекция, примеры curl.
+Качество: тесты (unit/integration/e2e), покрытие, property‑based (Hypothesis), линтеры (ruff), форматер (black), типы (mypy), pre‑commit.
+CI/CD: GitHub Actions (линты, тесты, build, миграции), контейнеры (Dockerfile, docker‑compose), автотэги релизов, превью‑деплой (Render/Fly.io/Cloud Run).
+БД и миграции: Alembic, сиды/фикстуры, индексы, N+1‑контроль, профайлинг запросов.
+Наблюдаемость: структурные логи, метрики Prometheus, трассировки OpenTelemetry, дешборды Grafana, алерты.
+Безопасность: валидация входа, rate limit, идемпотентность, защита секретов, bandit/safety сканы.
+Демоданные и сценарии: make targets или скрипты для «быстрого старта», нагрузочное тестирование (k6/Locust) и результаты в README.

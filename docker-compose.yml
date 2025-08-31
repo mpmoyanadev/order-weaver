@@ -1,0 +1,130 @@
+services:
+  redpanda:
+    image: docker.redpanda.com/redpandadata/redpanda:latest
+    container_name: redpanda
+    command:
+      - redpanda start --overprovisioned --smp 1 --memory 1G --reserve-memory 0M --node-id 0 \
+        --kafka-addr PLAINTEXT://0.0.0.0:9092,OUTSIDE://0.0.0.0:29092 \
+        --advertise-kafka-addr PLAINTEXT://redpanda:9092,OUTSIDE://localhost:29092
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    healthcheck:
+      test: ["CMD", "rpk", "cluster", "info", "-X", "brokers=redpanda:9092"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redpanda-console:
+    image: docker.redpanda.com/redpandadata/console:latest
+    container_name: redpanda-console
+    ports:
+      - "8081:8080"
+    environment:
+      KAFKA_BROKERS: redpanda:9092
+    depends_on:
+      - redpanda
+
+  jaeger:
+    image: jaegertracing/all-in-one:1.57
+    container_name: jaeger
+    ports:
+      - "16686:16686"   # UI
+      - "4318:4318"     # OTLP http
+      - "4317:4317"     # OTLP grpc
+
+  orders-db:
+    image: postgres:15-alpine
+    container_name: orders-db
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app
+      POSTGRES_DB: orders
+    ports:
+      - "5434:5432"
+
+  payments-db:
+    image: postgres:15-alpine
+    container_name: payments-db
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app
+      POSTGRES_DB: payments
+    ports:
+      - "5435:5432"
+
+  inventory-db:
+    image: postgres:15-alpine
+    container_name: inventory-db
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app
+      POSTGRES_DB: inventory
+    ports:
+      - "5436:5432"
+
+  orders:
+    build:
+      context: .
+      dockerfile: services/orders/Dockerfile
+    container_name: orders
+    environment:
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://jaeger:4318
+      - OTEL_SERVICE_NAME=orders-service
+      - KAFKA_BROKERS=redpanda:9092
+      - DATABASE_URL=postgresql+asyncpg://app:app@orders-db:5432/orders
+    ports:
+      - "8001:8001"
+    depends_on:
+      - orders-db
+      - redpanda
+      - jaeger
+
+  payments:
+    build:
+      context: .
+      dockerfile: services/payments/Dockerfile
+    container_name: payments
+    environment:
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://jaeger:4318
+      - OTEL_SERVICE_NAME=payments-service
+      - KAFKA_BROKERS=redpanda:9092
+      - DATABASE_URL=postgresql+asyncpg://app:app@payments-db:5432/payments
+    ports:
+      - "8002:8002"
+    depends_on:
+      - payments-db
+      - redpanda
+      - jaeger
+
+  inventory:
+    build:
+      context: .
+      dockerfile: services/inventory/Dockerfile
+    container_name: inventory
+    environment:
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://jaeger:4318
+      - OTEL_SERVICE_NAME=inventory-service
+      - KAFKA_BROKERS=redpanda:9092
+      - DATABASE_URL=postgresql+asyncpg://app:app@inventory-db:5432/inventory
+    ports:
+      - "8003:8003"
+    depends_on:
+      - inventory-db
+      - redpanda
+      - jaeger
+
+  orchestrator:
+    build:
+      context: .
+      dockerfile: services/orchestrator/Dockerfile
+    container_name: orchestrator
+    environment:
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://jaeger:4318
+      - OTEL_SERVICE_NAME=orchestrator-service
+      - KAFKA_BROKERS=redpanda:9092
+    ports:
+      - "8004:8004"
+    depends_on:
+      - redpanda
+      - jaeger

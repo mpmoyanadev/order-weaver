@@ -1,0 +1,10 @@
+syntax = "proto3";
+package inventory;
+
+message InventoryReserved {
+  string order_id = 1;
+}
+
+message InventoryReleased {
+  string order_id = 1;
+}

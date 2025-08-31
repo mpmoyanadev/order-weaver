@@ -1,0 +1,11 @@
+syntax = "proto3";
+package payments;
+
+message PaymentAuthorize {
+  string order_id = 1;
+  double amount = 2;
+}
+
+message PaymentCaptured {
+  string order_id = 1;
+}

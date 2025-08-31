@@ -1,0 +1,13 @@
+syntax = "proto3";
+package common;
+
+message EventEnvelope {
+  string id = 1;              // UUID события
+  string type = 2;            // тип события (e.g., OrderCreated)
+  string source = 3;          // источник (имя сервиса)
+  string correlation_id = 4;  // для объединения цепочки
+  string causation_id = 5;    // предыдущее событие/запрос
+  string traceparent = 6;     // W3C traceparent для e2e трейсинга
+  string timestamp = 7;       // ISO8601
+  bytes payload = 8;          // сериализованное тело конкретного события
+}
