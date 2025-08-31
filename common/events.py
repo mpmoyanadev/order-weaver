@@ -36,9 +36,11 @@ def pack_envelope(
     - source — имя сервиса-источника.
     """
     from common.proto.common import event_envelope_pb2 as env_pb2  # локальный импорт
+
     env_pb2 = cast(Any, env_pb2)  # для mypy: tr-typed pb2 считаем Any
 
-    env = env_pb2.EventEnvelope(
+    env_cls = getattr(env_pb2, "EventEnvelope")
+    env = env_cls(
         id=str(uuid4()),
         type=event_type,
         source=source,
@@ -57,8 +59,10 @@ def unpack_envelope(data: bytes) -> tuple[Any, bytes]:
     Возвращаем сам envelope (protobuf-объект) и исходный payload (bytes).
     """
     from common.proto.common import event_envelope_pb2 as env_pb2  # локальный импорт
+
     env_pb2 = cast(Any, env_pb2)  # для mypy
 
-    env = env_pb2.EventEnvelope()
+    env_cls = getattr(env_pb2, "EventEnvelope")
+    env = env_cls()
     env.ParseFromString(data)
     return env, bytes(env.payload)
